@@ -1,0 +1,48 @@
+# -----------------------------
+# Python
+# -----------------------------
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environment
+.venv/
+venv/
+
+# Environment Variables
+.env
+
+# -----------------------------
+# Node / React
+# -----------------------------
+node_modules/
+dist/
+build/
+
+# -----------------------------
+# VS Code
+# -----------------------------
+.vscode/
+
+# -----------------------------
+# OS Files
+# -----------------------------
+.DS_Store
+Thumbs.db
+
+# -----------------------------
+# Logs
+# -----------------------------
+*.log
+
+# -----------------------------
+# Google Cloud Credentials
+# -----------------------------
+backend/config/service-account.json
+
+# -----------------------------
+# Temporary Uploads
+# -----------------------------
+backend/uploads/*
+!backend/uploads/.gitkeep
