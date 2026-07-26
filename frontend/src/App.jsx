@@ -1,8 +1,9 @@
+import DocumentUpload from "./pages/DocumentUpload";
+
 function App() {
   return (
     <div>
-      <h1>AI-Based Document Intelligence Platform</h1>
-      <p>Frontend setup completed successfully.</p>
+      <DocumentUpload />
     </div>
   );
 }
