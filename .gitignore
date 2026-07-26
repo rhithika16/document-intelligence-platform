@@ -1,48 +1,39 @@
-# -----------------------------
+# ==========================
 # Python
-# -----------------------------
-__pycache__/
-*.py[cod]
-*.pyo
-*.pyd
+# ==========================
+backend/.venv/
+backend/__pycache__/
+**/__pycache__/
+*.pyc
 
-# Virtual Environment
-.venv/
-venv/
+# ==========================
+# Environment Files
+# ==========================
+backend/.env
+frontend/.env
 
-# Environment Variables
-.env
+# Google Cloud Service Account
+backend/config/service-account.json
 
-# -----------------------------
-# Node / React
-# -----------------------------
+# ==========================
+# Node
+# ==========================
+frontend/node_modules/
 node_modules/
+
+# ==========================
+# Build Files
+# ==========================
 dist/
 build/
 
-# -----------------------------
+# ==========================
 # VS Code
-# -----------------------------
+# ==========================
 .vscode/
 
-# -----------------------------
-# OS Files
-# -----------------------------
+# ==========================
+# Operating System Files
+# ==========================
 .DS_Store
 Thumbs.db
-
-# -----------------------------
-# Logs
-# -----------------------------
-*.log
-
-# -----------------------------
-# Google Cloud Credentials
-# -----------------------------
-backend/config/service-account.json
-
-# -----------------------------
-# Temporary Uploads
-# -----------------------------
-backend/uploads/*
-!backend/uploads/.gitkeep
