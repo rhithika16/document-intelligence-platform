@@ -43,7 +43,13 @@ async def upload_document(file: UploadFile = File(...)):
     file.file.seek(0)
 
     # Upload to Google Cloud Storage
-    result = upload_file(file)
+    try:
+        result = upload_file(file)
+    except Exception as e:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Cloud upload failed: {str(e)}"
+        )
 
     document_id = save_document_metadata(
     file_name=file.filename,
@@ -53,7 +59,16 @@ async def upload_document(file: UploadFile = File(...)):
 )
 
     return {
-    "message": "File uploaded successfully.",
-    "document_id": document_id,
-    "data": result
+    "success": True,
+    "message": "Document uploaded successfully.",
+    "document": {
+        "id": document_id,
+        "name": file.filename,
+        "type": file.content_type,
+        "size": file_size,
+        "status": "Uploaded"
+    },
+    "storage": {
+        "path": result["blob_name"]
+    }
 }

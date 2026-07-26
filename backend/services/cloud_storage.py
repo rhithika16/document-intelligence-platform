@@ -1,29 +1,44 @@
-import os
 from google.cloud import storage
-from dotenv import load_dotenv
+from fastapi import UploadFile
+import uuid
+import os
 
-load_dotenv()
+# Initialize Google Cloud Storage Client
+client = storage.Client.from_service_account_json(
+    "config/service-account.json"
+)
 
-bucket_name = os.getenv("GCS_BUCKET_NAME")
+# Your bucket name
+BUCKET_NAME = "ai-doc-intelligence-rhithika-2026"
 
-client = storage.Client()
-bucket = client.bucket(bucket_name)
+bucket = client.bucket(BUCKET_NAME)
 
 
-def upload_file(file):
+def upload_file(file: UploadFile):
     """
-    Upload a file to Google Cloud Storage.
+    Uploads a file to Google Cloud Storage with a unique filename.
     """
 
-    blob = bucket.blob(file.filename)
+    # Get original file extension (.pdf, .docx, .txt)
+    extension = os.path.splitext(file.filename)[1]
 
+    # Generate unique filename
+    unique_filename = f"{uuid.uuid4()}{extension}"
+
+    # Store inside 'documents/' folder in the bucket
+    blob_name = f"documents/{unique_filename}"
+
+    # Create blob
+    blob = bucket.blob(blob_name)
+
+    # Upload file
     blob.upload_from_file(
         file.file,
         content_type=file.content_type
     )
 
     return {
-        "file_name": file.filename,
-        "blob_name": blob.name,
-        "bucket": bucket.name
+        "original_filename": file.filename,
+        "blob_name": blob_name,
+        "public_url": blob.public_url
     }
