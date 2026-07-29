@@ -6,7 +6,10 @@ def save_document_metadata(
     file_type,
     file_size,
     cloud_path,
-    status="Uploaded"
+    document_group_id,
+    version_number,
+    status="Uploaded",
+    is_latest=True
 ):
 
     connection = get_db_connection()
@@ -14,8 +17,17 @@ def save_document_metadata(
 
     query = """
         INSERT INTO documents
-        (file_name, file_type, file_size, cloud_path, status)
-        VALUES (%s, %s, %s, %s, %s)
+        (
+            file_name,
+            file_type,
+            file_size,
+            cloud_path,
+            status,
+            version_number,
+            is_latest,
+            document_group_id
+        )
+        VALUES (%s,%s,%s,%s,%s,%s,%s,%s)
     """
 
     values = (
@@ -23,7 +35,10 @@ def save_document_metadata(
         file_type,
         file_size,
         cloud_path,
-        status
+        status,
+        version_number,
+        is_latest,
+        document_group_id
     )
 
     cursor.execute(query, values)
