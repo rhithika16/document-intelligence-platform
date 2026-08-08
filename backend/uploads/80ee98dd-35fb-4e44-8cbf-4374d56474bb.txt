@@ -1,6 +1,0 @@
-| Field             | Value            |
-| ----------------- | ---------------- |
-| file              | any PDF/DOCX/TXT |
-| document_name     | Project Report   |
-| is_new_document   | true             |
-| document_group_id | leave empty      |

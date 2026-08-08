@@ -1,6 +1,0 @@
-| Field             | Value          |
-| ----------------- | -------------- |
-| file              | another file   |
-| document_name     | Project Report |
-| is_new_document   | false          |
-| document_group_id | 1              |

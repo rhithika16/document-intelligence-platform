@@ -1,5 +1,0 @@
-document_name = Employee Policy
-
-is_new_document = true
-
-document_group_id = leave empty
